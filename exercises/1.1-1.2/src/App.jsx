@@ -1,6 +1,7 @@
-import Header from "./components/header/header.jsx";
+
 import Content from "./components/content/content.jsx";
 import Total from "./components/total/total.jsx";
+import Header from "./components/header/header.jsx";
 
 const App = () => {
     const name = 'Half Stack application development'
