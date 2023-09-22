@@ -4,23 +4,28 @@ import Button from "../Button/Button.jsx";
 
 const App = () => {
     const [counter, setCounter] = useState(0)
-    const increaseByOne = () => setCounter(counter + 1)
-    const decreaseByOne = () => setCounter(counter - 1)
-    const setToZero = () => setCounter(0)
+
+    const changeCount = (delta) => {
+        const newCounter = counter + delta;
+        setCounter(newCounter)
+    }
 
     return (
         <div>
             <Display counter={counter} />
             <Button
-                handleClick={increaseByOne}
+                changeCount={changeCount}
+                delta={1}
                 text='plus'
             />
             <Button
-                handleClick={setToZero}
+                changeCount={changeCount}
+                delta={-counter}
                 text='zero'
             />
             <Button
-                handleClick={decreaseByOne}
+                changeCount={changeCount}
+                delta={-1}
                 text='minus'
             />
         </div>
