@@ -1,4 +1,4 @@
-import {useState} from "react";
+import { useState } from "react";
 import Display from '../Display/Display.jsx'
 import Button from "../Button/Button.jsx";
 
@@ -19,17 +19,17 @@ const App = () => {
             <Button
                 changeCount={changeCount}
                 delta={1}
-                text='plus'
+                text='Plus'
             />
             <Button
                 changeCount={changeCount}
                 delta={-counter}
-                text='zero'
+                text='Zero'
             />
             <Button
                 changeCount={changeCount}
                 delta={-1}
-                text='minus'
+                text='Minus'
             />
         </div>
     )
