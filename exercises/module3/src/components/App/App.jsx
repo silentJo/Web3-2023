@@ -13,14 +13,9 @@ const App = () => {
     const positive = (good / all) * 100
 
     setTimeout(() => {setLoading(false)}, 3000)
+    if (loading) { return (<Loading />) }
 
-    if (loading) {
-        return (
-            <Loading />
-        )
-    }
-
-    if (good === 0 && neutral === 0 && bad === 0) {
+    if (all === 0) {
         return (
             <div>
                 <h1>Give feedback</h1>
