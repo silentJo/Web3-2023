@@ -31,8 +31,7 @@ const App = () => {
     const lowerFilter = filterValue.toLowerCase()
     const filteredPersons = persons.filter((person) => {
         const lowerPersonName = person.name.toLowerCase()
-        const keep = lowerPersonName.includes(lowerFilter)
-        return keep
+        return lowerPersonName.includes(lowerFilter)
     })
 
     const changeFilter = (newFilter) => {

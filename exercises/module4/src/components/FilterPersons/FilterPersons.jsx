@@ -1,5 +1,3 @@
-import React from 'react'
-
 const FilterPersons = ({filterValue,changeFilter}) => {
     const handleFilterChange = (e) => {
         const newValue = e.target.value
