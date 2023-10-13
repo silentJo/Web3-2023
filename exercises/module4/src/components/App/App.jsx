@@ -1,6 +1,7 @@
 import {useState} from 'react'
 import Person from "../Person/Person.jsx";
 import FilterPersons from "../FilterPersons/FilterPersons.jsx";
+import AddPerson from "../AddPerson/AddPerson.jsx";
 
 const App = () => {
     const [persons, setPersons] = useState([
@@ -10,16 +11,7 @@ const App = () => {
     const [newNumber, setNewNumber] = useState('')
     const [filterValue, setfiltervalue] = useState('')
 
-    const handleNameChange = (event) => {
-        setNewName(event.target.value)
-    }
-
-    const handleNumberChange = (event) => {
-        setNewNumber(event.target.value)
-    }
-
-    const addPerson = (event) => {
-        event.preventDefault()
+    const addPerson = () => {
         const personObject = {
             name: newName,
             number: newNumber,
@@ -53,17 +45,14 @@ const App = () => {
             <div>
                 <FilterPersons changeFilter={changeFilter} filterValue={filterValue}/>
             </div>
-            <form onSubmit={addPerson}>
-                <div>
-                    name: <input value={newName} onChange={handleNameChange}/>
-                </div>
-                <div>
-                    number: <input value={newNumber} onChange={handleNumberChange}/>
-                </div>
-                <div>
-                    <button type="submit">add</button>
-                </div>
-            </form>
+            <h2>Add new</h2>
+            <AddPerson
+                newName={newName}
+                setNewName={setNewName}
+                newNumber={newNumber}
+                setNewNumber={setNewNumber}
+                addPerson={addPerson}
+            />
             <h3>Numbers</h3>
             {filteredPersons.map(person =>
                 <Person key={person.id} name={person.name} number={person.number}/>
