@@ -1,9 +1,10 @@
 import React, {useState} from "react"
+import { v4 as uuid } from 'uuid'
 
 const OpinionContext = React.createContext(null)
 
 const ProviderWrapper = (props) => {
-    
+
     const [opinions, setOpinions] = useState([])
 
     const voteForOpinion = (id) => {
@@ -33,7 +34,7 @@ const ProviderWrapper = (props) => {
             return
         }
         const newOpinion = {
-            id: new Date().getTime(),
+            id: uuid(),
             label: label,
             score: 1
         }

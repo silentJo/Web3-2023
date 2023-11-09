@@ -10,17 +10,11 @@ const OpinionItem = ({opinion}) => {
 
     return (
         <div>
-      <span className="label">
-        {opinion.label}
-      </span>
+            <span className="label">{opinion.label}</span>
             &nbsp;:&nbsp;
-            <span className="score">
-        {opinion.score}
-      </span>
+            <span className="score">{opinion.score}</span>
             &nbsp;
-            <button onClick={handleClick}>
-                Vote
-            </button>
+            <button onClick={handleClick}>Vote</button>
         </div>
     );
 }
