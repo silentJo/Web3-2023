@@ -1,10 +1,9 @@
 import {useState} from 'react'
 import {BrowserRouter as Router, Link, Route, Routes, useNavigate, useParams} from "react-router-dom";
+import {Button, Form, Input} from "antd";
 
 const Menu = () => {
-    const padding = {
-        paddingRight: 5
-    }
+    const padding = {paddingRight: 5}
     return (
         <div>
             <Link to="/" style={padding}>anecdotes</Link>
@@ -14,8 +13,8 @@ const Menu = () => {
     )
 }
 
-const Anecdote = ({ anecdotes }) => {
-    const { id } = useParams();
+const Anecdote = ({anecdotes}) => {
+    const {id} = useParams();
     const anecdote = anecdotes.find(a => a.id === parseInt(id));
 
     return (
@@ -31,7 +30,6 @@ const Anecdote = ({ anecdotes }) => {
     );
 };
 
-
 const AnecdoteList = ({anecdotes}) => (
     <div>
         <h2>Anecdotes</h2>
@@ -44,7 +42,6 @@ const AnecdoteList = ({anecdotes}) => (
         </ul>
     </div>
 )
-
 
 const About = () => (
     <div>
@@ -65,7 +62,6 @@ const About = () => (
 const Footer = () => (
     <div>
         Anecdote app for <a href='https://fullstackopen.com/'>Full Stack Open</a>.
-
         See <a
         href='https://github.com/fullstack-hy2020/routed-anecdotes/blob/master/src/App.js'>https://github.com/fullstack-hy2020/routed-anecdotes/blob/master/src/App.js</a> for
         the source code.
@@ -74,39 +70,63 @@ const Footer = () => (
 
 const CreateNew = (props) => {
     const navigate = useNavigate()
-    const [content, setContent] = useState('')
-    const [author, setAuthor] = useState('')
-    const [info, setInfo] = useState('')
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
+    const onFinish = (values) => {
         props.addNew({
-            content,
-            author,
-            info,
+            content:values.content,
+            author:values.author,
+            info:values.info,
             votes: 0
         })
+        console.log('Success:');
         navigate("/");
-    }
+    };
+
+    const onFinishFailed = () => {
+        console.log('Failed:');
+    };
 
     return (
         <div>
             <h2>create a new anecdote</h2>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    content
-                    <input name='content' value={content} onChange={(e) => setContent(e.target.value)}/>
-                </div>
-                <div>
-                    author
-                    <input name='author' value={author} onChange={(e) => setAuthor(e.target.value)}/>
-                </div>
-                <div>
-                    url for more info
-                    <input name='info' value={info} onChange={(e) => setInfo(e.target.value)}/>
-                </div>
-                <button>create</button>
-            </form>
+            <Form
+                name="create"
+                labelCol={{span: 8}}
+                wrapperCol={{span: 16}}
+                style={{maxWidth: 600}}
+                initialValues={{remember: true}}
+                onFinish={onFinish}
+                onFinishFailed={onFinishFailed}
+                autoComplete="off"
+            >
+                <Form.Item
+                    label='Content'
+                    name='content'
+                    rules={[{required: true, message: 'Please input content'}]}
+                >
+                    <Input/>
+                </Form.Item>
+                <Form.Item
+                    label='Author'
+                    name='author'
+                    rules={[{required: true, message: 'Please input content'}]}
+                >
+                    <Input/>
+                </Form.Item>
+                <Form.Item
+                    label='Info'
+                    name='info'
+                    rules={[{required: true, message: 'Please input content'}]}
+                >
+                    <Input/>
+                </Form.Item>
+                <Form.Item
+                    wrapperCol={{offset: 8, span: 16}}>
+                    <Button type="primary" htmlType="submit">
+                        create
+                    </Button>
+                </Form.Item>
+            </Form>
         </div>
     )
 
