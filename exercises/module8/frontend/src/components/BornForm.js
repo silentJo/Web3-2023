@@ -18,7 +18,6 @@ const BornForm = () => {
         setBorn(0); // Assurez-vous de passer un nombre pour born, car le backend attend un Int
     };
 
-
     return (
         <div>
             <h2>Set birthyear</h2>
