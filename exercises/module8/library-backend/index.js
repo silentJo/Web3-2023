@@ -141,6 +141,7 @@ const resolvers = {
         allAuthors : () => {
             return authors.map(author => ({
                 name: author.name,
+                born: author.born,
                 bookCount: books.filter(book => book.author === author.name).length,
             }));
         }
@@ -174,7 +175,7 @@ const server = new ApolloServer({
 })
 
 startStandaloneServer(server, {
-    listen: { port: 4000 },
+    listen: { port: 4080 },
 }).then(({ url }) => {
     console.log(`Server ready at ${url}`)
 })
