@@ -53,13 +53,16 @@ const typeDefs = `
             street: String!
             city: String!
         ): Person
+        editNumber(
+          name: String!
+          phone: String!
+        ): Person
     }
 `
 
 const resolvers = {
     Query : {
         personCount: () => persons.length,
-        //allPersons: () => persons,
         allPersons: (root, args) => {
             if(!args.phone) return persons
             const byPhone = (person) => args.phone === 'YES' ? person.phone : !person.phone
@@ -105,7 +108,7 @@ const server = new ApolloServer({
 })
 
 startStandaloneServer(server, {
-    listen: { port: 4000 }
+    listen: { port: 4040 }
 }).then(({ url }) => {
     console.log(`Server ready at ${url}`)
 })
